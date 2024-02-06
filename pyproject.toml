@@ -1,0 +1,17 @@
+[project]
+name = "RAITE-data-registry"
+version = "0.1.0"
+description = "This is a usage example for importing the RAITE dataset."
+authors = [
+    {name = "Priscila Moreira", email = "pmoreira@nd.edu"},
+]
+dependencies = [
+    "dvc==3.33.3",
+    "dvc-ssh>=3.0.0",
+]
+requires-python = ">=3.10"
+license = {text = "MIT"}
+
+[build-system]
+requires = ["pdm-pep517>=1.0.0"]
+build-backend = "pdm.pep517.api"

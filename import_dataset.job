@@ -1,0 +1,10 @@
+#!/bin/bash
+#$ -M pmoreira@nd.edu
+#$ -m abe
+
+
+cd /project01/cvrl/pmoreira/raite-usage-example
+
+pdm run dvc import  https://github.com/nd-crane/raite-data-registry data/crane-dataset 
+
+

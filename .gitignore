@@ -1,0 +1,6 @@
+pdm.lock
+.pdm-python
+.venv
+.nfs*
+*.job.o*
+
