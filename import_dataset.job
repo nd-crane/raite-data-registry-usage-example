@@ -3,13 +3,11 @@
 #$ -m abe
 
 # Go to the path where you want the data to be downloaded
-cd /project01/cvrl/pmoreira/raite-usage-example
+cd /project01/cvrl/pmoreira/raite-data-registry-usage-example
 
 # load your virtual environment with DVC installed 
-#   (In my case, I'm using PDM to manage the Python packages, including DVC)
+source .venv/bin/activate
 
-# Run `dvc init` only the first time you are importing data
-pdm run dvc init
+# Run `dvc import` on the RAITE data registry repo
+dvc import https://github.com/nd-crane/raite-data-registry data/raite_2023
 
-# Run `dvc import` on the RAITE data registry repo.
-pdm run dvc import https://github.com/nd-crane/raite-data-registry

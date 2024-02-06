@@ -3,4 +3,5 @@ pdm.lock
 .venv
 .nfs*
 *.job.o*
-
+/data
+/raite_2023
