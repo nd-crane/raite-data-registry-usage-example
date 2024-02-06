@@ -65,6 +65,6 @@ dvc get  https://github.com/nd-crane/raite-data-registry data/raite_2023
 
 
 
-*Note*: Remember to add `pdm run` at the beginning of the DVC commands.
+*Note*: When using pdm, add `pdm run` at the beginning of the DVC commands.
 
  
