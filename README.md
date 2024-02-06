@@ -13,8 +13,8 @@ pdm update
 
 ## Usage
 
-Once you have DVC installed in your evniroment, 
-you can use the RAITE data registry repository [https://github.com/nd-crane/raite-data-registry](https://github.com/nd-crane/raite-data-registry) to list, import, and download the datasets used in the RAITE. See examples in the next sections..
+Once you have DVC installed in your environment, 
+you can use the RAITE data registry repository [https://github.com/nd-crane/raite-data-registry](https://github.com/nd-crane/raite-data-registry) to list, import, and download the datasets used in the RAITE. See examples in the next sections.
 
 *Remember:* You don't need to clone this repository for that.
 
@@ -30,7 +30,7 @@ To view the content of a particular dataset in the registry, you can run the `dv
 For example, to list the content of the initial crane dataset, you can run the following command:
 
 ```bash
-dvc list -R https://github.com/nd-crane/raite-data-registry data/crane-dataset
+dvc list -R https://github.com/nd-crane/raite-data-registry data/raite_2023
 ```
 
 ### **Data import workflow**
@@ -38,33 +38,33 @@ You can import a specific dataset from the registry by running the `dvc import` 
 For example, to import the initial crane dataset, you can run the following:
 
 ```bash
-# only in the first time
+# Only in the first time
 dvc init
 ```
 
 ```bash
-dvc import  https://github.com/nd-crane/raite-data-registry data/crane-dataset
+dvc import  https://github.com/nd-crane/raite-data-registry data/raite_2023
 ```
 
-Besides downloading the data, `dvc import` saves the information about the dependency that the local project has on the data source (the raite-data-registry repo).
-In that case, DVC generates a special import `.dvc` file, which contains such dependency information. In the previous example, the generated file is `crane-dataset.dvc`.
+Besides downloading the data, `dvc import`  saves information about the dependency that the local project has on the data source (the raite-data-registry repo).
+In that case, DVC generates a special import `.dvc` file containing such dependency information. In the previous example, the generated file is `raite_2023.dvc`.
 
-Whenever the dataset changes in the registry, you can bring data up to date in with `dvc update` command followed by the name of the generated `.dvc` file. For example, to update the initial crane dataset, you can run the following:
+Whenever the dataset changes in the registry, you can bring data up to date with the `dvc update` command followed by the name of the generated `.dvc` file. For example, to update the initial crane dataset, you can run the following:
 ```bash
-dvc update crane-dataset.dvc
+dvc update raite_2023.dvc
 ```
 
 ### **Data downloads**
-You can download a specific dataset from the registry by running the `dvc get` command. It uses the same syntax as `dvc import` command, but it doesn't save the dependency information.
+You can download a specific dataset from the registry by running the `dvc get` command. It uses the same syntax as the `dvc import` command but doesn't save the dependency information.
 
 To obtain the initial crane dataset, execute the following command for downloading:
 
 ```bash
-dvc get  https://github.com/nd-crane/raite-data-registry data/crane-dataset
+dvc get  https://github.com/nd-crane/raite-data-registry data/raite_2023
 ```
 
 
 
-*Note*: In that case, remember to add `pdm run` in the beginning of the DVC commands.
+*Note*: Remember to add `pdm run` at the beginning of the DVC commands.
 
  
