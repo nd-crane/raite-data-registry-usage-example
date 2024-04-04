@@ -2,19 +2,23 @@
 
 ## Requirement
 
-DVC is required to import the RAITE dataset. You can find instructions [here](https://dvc.org/doc/install) to install DVC.
+DVC is required to import the RAITE dataset. You can find instructions [here](https://dvc.org/doc/install) on how to install DVC.
 
-If you use PDM to manage Python packages, after cloning this repo, you can have DVC by running this command:
+You can install the requirements using pip:
+```bash
+pip install dvc[gdrive]
+```
+
+Or, if you use PDM to manage Python packages, after cloning this repo, you can have DVC by running this command:
 
 ```bash 
 pdm update
 ```
 
-
 ## Usage
 
 Once you have DVC installed in your environment, 
-you can use the RAITE data registry repository [https://github.com/nd-crane/raite-data-registry](https://github.com/nd-crane/raite-data-registry) to list, import, and download the datasets used in the RAITE. See examples in the next sections.
+you can use the RAITE data registry repository [https://github.com/nd-crane/raite-data-registry](https://github.com/nd-crane/raite-data-registry) to list, import, and download the datasets used in the RAITE. Please take a look at the examples in the following sections.
 
 *Remember:* You don't need to clone this repository for that.
 
@@ -33,38 +37,55 @@ For example, to list the content of the initial crane dataset, you can run the f
 dvc list -R https://github.com/nd-crane/raite-data-registry data/raite_2023
 ```
 
-### **Data import workflow**
-You can import a specific dataset from the registry by running the `dvc import` command. It is analogous to using direct download tools like wget (HTTP).
-For example, to import the initial crane dataset, you can run the following:
+
+### **Data downloads**
+You can download a specific dataset from the registry by running the `dvc get` command. It is analogous to using direct download tools like wget (HTTP).
+
+To obtain the raite2023 dataset with the videos from the matches, execute the following command for downloading:
+
+```bash
+dvc get  https://github.com/nd-crane/raite-data-registry data/raite_2023/cleaned_matches
+```
+
+If you don't have access to CRC machines at the University of Notre Dame, add the flag `--remote` to specify `gdrive` as a remote location. See the example below.
+```bash
+dvc get --remote gdrive https://github.com/nd-crane/raite-data-registry data/raite_2023/cleaned_matches
+```
+
+### **Data import**
+You can import a specific dataset from the registry by running the `dvc import` command. 
+It uses the same syntax as the `dvc get` command but saves the dependency information.
+You must also be in a directory that is git repo and initialize the dvc environment before using the import dvc command.
+
+For example, to import the raite2023 dataset (saving the dependencies), you can run the following:
 
 ```bash
 # Only in the first time
+
+# (optional) Initialize Git only if you are inside a folder that is not currently a Git repository
+git init 
+
+# Initialize dvc repo
 dvc init
 ```
-
+Finally, run the dvc import command:
 ```bash
-dvc import  https://github.com/nd-crane/raite-data-registry data/raite_2023
+dvc import https://github.com/nd-crane/raite-data-registry data/raite_2023/cleaned_matches
 ```
+Again, if you cannot access CRC machines at the University of Notre Dame, you must add the flag `--remote gdrive` to the previous command. 
+Note: In addition to downloading the data, `dvc import` saves information about the local project's dependency on the data source (the raite-data-registry repo).
+DVC generates a special import `.dvc` file containing such dependency information in that case. 
+The generated file is `cleaned_matches.dvc` in the previous example.
 
-Besides downloading the data, `dvc import`  saves information about the dependency that the local project has on the data source (the raite-data-registry repo).
-In that case, DVC generates a special import `.dvc` file containing such dependency information. In the previous example, the generated file is `raite_2023.dvc`.
-
-Whenever the dataset changes in the registry, you can bring data up to date with the `dvc update` command followed by the name of the generated `.dvc` file. For example, to update the initial crane dataset, you can run the following:
+Whenever the dataset changes in the registry, you can bring data up to date with the `dvc update` command followed by the name of the generated `.dvc` file.\
+For example, to update the raite 2023 cleaned_matches dataset, you can run the following:
 ```bash
-dvc update raite_2023.dvc
+dvc update cleaned_matches.dvc
 ```
-
-### **Data downloads**
-You can download a specific dataset from the registry by running the `dvc get` command. It uses the same syntax as the `dvc import` command but doesn't save the dependency information.
-
-To obtain the initial crane dataset, execute the following command for downloading:
-
-```bash
-dvc get  https://github.com/nd-crane/raite-data-registry data/raite_2023
-```
-
 
 
 *Note*: When using pdm, add `pdm run` at the beginning of the DVC commands.
+
+If you encounter any problems, please don't hesitate to reach out to Priscila Moreira at pmoreira@nd.edu.
 
  
