@@ -10,7 +10,7 @@ If installiong with conda it is recommeneded to set your default solver as libma
 
 #### Installing with conda (libmamba default solver):
 
-**Local storage**
+###### Local storage
 ```bash
 conda install -c conda-forge dvc
 ```
