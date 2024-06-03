@@ -6,8 +6,6 @@ DVC is required to import the RAITE dataset. You can find complete instructions 
 
 If installiong with conda it is recommeneded to set your default solver as libmamba. You can find instructions [here](https://www.anaconda.com/blog/conda-is-fast-now) on installing and setting your default solver as libmamba. Alternatively, you can also following the DVC installation instructions and install mamba within your dvc envirnoment.
 
-### Testing
-
 #### Installing with conda (libmamba default solver):
 
 ###### Local storage
@@ -15,49 +13,49 @@ If installiong with conda it is recommeneded to set your default solver as libma
 conda install -c conda-forge dvc
 ```
 
-**Remote storage**
+###### Remote storage
 ```bash
 conda install -c conda-forge dvc-ssh
 ```
 
-**Google Drive**
+###### Google Drive
 ```bash
 conda install -c conda-forge dvc-gdrive
 ```
 
-##### Installing with conda (libmamba not default solver):
+#### Installing with conda (libmamba not default solver):
 
-**Mamba solver for faster solves**
+###### Mamba solver for faster solves
 ```bash
 conda install -c conda-forge mamba
 ```
 
-**Local storage**
+###### Local storage
 ```bash
 mamba install -c conda-forge dvc
 ```
 
-**Remote storage**
+###### Remote storage
 ```bash
 mamba install -c conda-forge dvc-ssh
 ```
 
-**Google Drive**
+###### Google Drive
 ```bash
 mamba install -c conda-forge dvc-gdrive
 ```
 
-###### Installing with Pip:
+#### Installing with Pip:
 
-**Local storage**
+###### Local storage
 ```bash
 pip install dvc
 ```
-**Remote storage**
+###### Remote storage
 ```bash
 pip install dvc[ssh]
 ```
-**Google Drive**
+###### Google Drive
 ```bash
 pip install dvc[gdrive] 
 ```
