@@ -25,13 +25,15 @@ conda install -c conda-forge dvc-gdrive
 
 #### Installing with conda (libmamba not default solver):
 
-###### Mamba solver
+Start by installing mamba as the default solver in your DVC envirnoment.
 
-Install mamba as the default solver in your DVC envirnoment.
+###### Mamba solver
 
 ```bash
 conda install -c conda-forge mamba
 ```
+
+Use the `mamba` command to install DVC.
 
 ###### Local storage
 ```bash
@@ -64,7 +66,7 @@ pip install dvc[gdrive]
 ```
 #### PDM:
 
-Or, if you use PDM to manage Python packages, after cloning this repo, you can have DVC by running this command:
+Or, if you use PDM to manage Python packages, after cloning this repo, you can have DVC by running the following command.
 
 ```bash 
 pdm update
@@ -105,7 +107,7 @@ git clone https://github.com/nd-crane/raite-data-registry.git
 ```
 #### Creating local DVC configuration file
 
-Run the following command to establish a DVC project conifugration with 'cvrl_remote' as the remote storage.
+Run the following command to establish a DVC project conifugration with "cvrl_remote" as the remote storage.
 
 **This step is not needed if using the RAITE data registry.** 
 
@@ -136,22 +138,57 @@ dvc list https://github.com/nd-crane/raite-data-registry data/
 To view the content of a particular dataset in the registry, you can run the `dvc list` with `-R` and specify the dataset name in the data folder. 
 For example, to list the content of the initial crane dataset, you can run the following commands:
 
+###### Local (From within a CRC machine)
+
+If you are logged into a CRC machine at the University of Notre Dame you can use the following command.
+
 ```bash
-dvc list -R https://github.com/nd-crane/raite-data-registry data/raite_2023 # from within a CRC machine
+dvc list -R https://github.com/nd-crane/raite-data-registry data/raite_2023
 ```
 
+###### Remote SSH to a CRC machine
 
+If you are on your local machine and connected to the Notre Dame VPN you can add the flag `--remote` to specify `cvrl_remote` as a remote location. If doing this make sure you set-up a local DVC configuration file with your CRC username. Then add the `--config` flag with the path to your local configuration file. 
+
+The default path from within a DVC repository is `./.dvc/config.local`. This is used in the example below.
+
+```bash
+dvc list -R --remote cvrl_remote --config ./.dvc/config.local https://github.com/nd-crane/raite-data-registry data/raite_2023
+```
+
+###### Google Drive
+
+If you don't have access to CRC machines at the University of Notre Dame, add the flag `--remote` to specify `gdrive` as a remote location. See the example below.
+
+```bash
+dvc list -R --remote gdrive https://github.com/nd-crane/raite-data-registry data/raite_2023
+```
 
 ### **Data downloads**
 You can download a specific dataset from the registry by running the `dvc get` command. It is analogous to using direct download tools like wget (HTTP).
 
 To obtain the raite2023 dataset with the videos from the matches, execute the following command for downloading:
 
+###### Local (From within a CRC machine)
+
 ```bash
-dvc get  https://github.com/nd-crane/raite-data-registry data/raite_2023/cleaned_matches
+dvc get https://github.com/nd-crane/raite-data-registry data/raite_2023/cleaned_matches
 ```
 
+###### Remote SSH to a CRC machine
+
+If you are on your local machine and connected to the Notre Dame VPN you can add the flag `--remote` to specify `cvrl_remote` as a remote location. If doing this make sure you set-up a local DVC configuration file with your CRC username. Then add the `--config` flag with the path to your local configuration file. 
+
+The default path from within a DVC repository is `./.dvc/config.local`. This is used in the example below.
+
+```bash
+dvc get --remote cvrl_remote --config ./.dvc/config.local https://github.com/nd-crane/raite-data-registry data/raite_2023/cleaned_matches
+```
+
+###### Google Drive
+
 If you don't have access to CRC machines at the University of Notre Dame, add the flag `--remote` to specify `gdrive` as a remote location. See the example below.
+
 ```bash
 dvc get --remote gdrive https://github.com/nd-crane/raite-data-registry data/raite_2023/cleaned_matches
 ```
