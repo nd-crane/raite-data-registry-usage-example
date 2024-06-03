@@ -26,6 +26,9 @@ conda install -c conda-forge dvc-gdrive
 #### Installing with conda (libmamba not default solver):
 
 ###### Mamba solver
+
+Install mamba as the default solver in your DVC envirnoment.
+
 ```bash
 conda install -c conda-forge mamba
 ```
@@ -70,11 +73,11 @@ pdm update
 
 If you plan to use DVC in conjunction with a CRC SSH connection a local DVC configuration file must be set-up to establish your username.
 
-Before creating a local DVC configuration file you must be in a directory that is both a git and DVC repository. This can be done creating a new directory and initializing a git and DVC repository within that directory, using a directory that is a git repository and initializing a DVC repository, or by cloning and using the RAITE data registry repository [https://github.com/nd-crane/raite-data-registry](https://github.com/nd-crane/raite-data-registry) (which is already set-up as a DVC repository).
+Before creating a local DVC configuration file you must be in a directory that is both a git and DVC repository. This can be done by creating a new directory and initializing it as git and DVC repository, using a directory that is already a git repository and initializing a DVC repository, or by cloning and using the RAITE data registry repository [https://github.com/nd-crane/raite-data-registry](https://github.com/nd-crane/raite-data-registry) (which is already set-up as a DVC repository).
 
 #### Using a new directory:
 
-Only needed to run the first time.
+These commands only need to be run the first time.
 
 ###### Intialize git repository
 ```bash
@@ -88,7 +91,7 @@ dvc init
 
 #### Using an establish git directory:
 
-Only needed to run the first time.
+This command only needs to be run the first time.
 
 ###### Initialize DVC repository
 ```bash
@@ -102,13 +105,15 @@ git clone https://github.com/nd-crane/raite-data-registry.git
 ```
 #### Creating local DVC configuration file
 
-Run the following command to establish a DVC project conifugration with 'cvrl_remote' as the remote storage. **This step is not needed if using the RAITE data registry.**
+Run the following command to establish a DVC project conifugration with 'cvrl_remote' as the remote storage.
+
+**This step is not needed if using the RAITE data registry.** 
 
 ```bash
 dvc remote add -d cvrl_remote ssh://crcfe01.crc.nd.edu:/afs/crc.nd.edu/group/cvrl/archive/data/ND/RAITE
 ```
 
-Run the following command to set-up a local DVC configuration file. Replace '<CRC user>' with your CRC user.
+Run the following command to set-up a local DVC configuration file. Replace \<CRC user\> with your CRC user.
 
 ```bash 
 dvc remote modify --local cvrl_remote user <CRC user>
