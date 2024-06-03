@@ -72,7 +72,7 @@ pdm update
 ```
 ## Directory Requirements
 
-If you plan to use DVC in conjunction with a CRC SSH connection a local DVC configuration file must be set-up to establish your username.
+If you plan to use DVC in conjunction with a CRC SSH connection a local DVC configuration file must be set-up to establish your CRC username.
 
 Before creating a local DVC configuration file you must be in a directory that is both a git and DVC repository. This can be done by creating a new directory and initializing it as git and DVC repository, using a directory that is already a git repository and initializing a DVC repository, or by cloning and using the RAITE data registry repository [https://github.com/nd-crane/raite-data-registry](https://github.com/nd-crane/raite-data-registry) (which is already set-up as a DVC repository).
 
@@ -169,6 +169,8 @@ You can download a specific dataset from the registry by running the `dvc get` c
 To obtain the raite2023 dataset with the videos from the matches, execute the following command for downloading:
 
 ###### Local (From within a CRC machine)
+
+If you are logged into a CRC machine at the University of Notre Dame you can use the following command.
 
 ```bash
 dvc get https://github.com/nd-crane/raite-data-registry data/raite_2023/cleaned_matches
