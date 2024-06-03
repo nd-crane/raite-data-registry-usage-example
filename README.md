@@ -4,7 +4,7 @@
 
 DVC is required to import the RAITE dataset. You can find complete instructions [here](https://dvc.org/doc/install) on how to install DVC.
 
-If installiong with conda it is recommeneded to set your default solver as libmamba. You can find instructions [here](https://www.anaconda.com/blog/conda-is-fast-now) on installing and setting your default solver as libmamba. Alternatively, you can also following the DVC installation instructions and install mamba within your dvc envirnoment.
+If installing with conda it is recommeneded to set your default solver as libmamba. You can find instructions [here](https://www.anaconda.com/blog/conda-is-fast-now) on installing and setting your default solver as libmamba. Alternatively, you can also following the DVC installation instructions and install mamba within your dvc envirnoment.
 
 #### Installing with conda (libmamba default solver):
 
@@ -25,7 +25,7 @@ conda install -c conda-forge dvc-gdrive
 
 #### Installing with conda (libmamba not default solver):
 
-###### Mamba solver for faster solves
+###### Mamba solver
 ```bash
 conda install -c conda-forge mamba
 ```
@@ -59,6 +59,7 @@ pip install dvc[ssh]
 ```bash
 pip install dvc[gdrive] 
 ```
+#### PDM:
 
 Or, if you use PDM to manage Python packages, after cloning this repo, you can have DVC by running this command:
 
@@ -67,10 +68,47 @@ pdm update
 ```
 ## Directory Requirements
 
-If you plan to use DVC in conjunction with a SSH connection to the CRC a local configuration file must be set-up to establish your username. 
+If you plan to use DVC in conjunction with a CRC SSH connection a local DVC configuration file must be set-up to establish your username.
 
+Before creating a local DVC configuration file you must be in a directory that is both a git and DVC repository. This can be done creating a new directory and initializing a git and DVC repository within that directory, using a directory that is a git repository and initializing a DVC repository, or by cloning and using the RAITE data registry repository [https://github.com/nd-crane/raite-data-registry](https://github.com/nd-crane/raite-data-registry) (which is already set-up as a DVC repository).
 
-Run the following command to set-up a local file. Replace '<CRC user>' with your CRC user.
+#### Using a new directory:
+
+Only needed to run the first time.
+
+###### Intialize git repository
+```bash
+git init
+```
+
+###### Initialize DVC repository
+```bash
+dvc init
+```
+
+#### Using an establish git directory:
+
+Only needed to run the first time.
+
+###### Initialize DVC repository
+```bash
+dvc init
+```
+#### Cloning the RAITE data registry repository:
+
+###### Clone repository
+```bash
+git clone https://github.com/nd-crane/raite-data-registry.git
+```
+#### Creating local DVC configuration file
+
+Run the following command to establish a DVC project conifugration with 'cvrl_remote' as the remote storage. **This step is not needed if using the RAITE data registry.**
+
+```bash
+dvc remote add -d cvrl_remote ssh://crcfe01.crc.nd.edu:/afs/crc.nd.edu/group/cvrl/archive/data/ND/RAITE
+```
+
+Run the following command to set-up a local DVC configuration file. Replace '<CRC user>' with your CRC user.
 
 ```bash 
 dvc remote modify --local cvrl_remote user <CRC user>
@@ -78,8 +116,7 @@ dvc remote modify --local cvrl_remote user <CRC user>
 
 ## Usage
 
-Once you have DVC installed in your environment, 
-you can use the RAITE data registry repository [https://github.com/nd-crane/raite-data-registry](https://github.com/nd-crane/raite-data-registry) to list, import, and download the datasets used in the RAITE. Please take a look at the examples in the following sections.
+Once you have DVC installed in your environment, you can use the RAITE data registry repository [https://github.com/nd-crane/raite-data-registry](https://github.com/nd-crane/raite-data-registry) to list, import, and download the datasets used in the RAITE. Please take a look at the examples in the following sections.
 
 *Remember:* You don't need to clone this repository for that.
 
