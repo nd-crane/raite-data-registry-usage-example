@@ -32,7 +32,6 @@ Start by installing mamba as the default solver in your DVC envirnoment.
 ```bash
 conda install -c conda-forge mamba
 ```
-
 Use the `mamba` command to install DVC.
 
 ###### Local storage
