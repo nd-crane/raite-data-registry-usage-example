@@ -1,18 +1,48 @@
 # This is a usage example for importing the RAITE dataset
 
-## Requirement
+## Installation Requirements
 
-DVC is required to import the RAITE dataset. You can find instructions [here](https://dvc.org/doc/install) on how to install DVC.
+DVC is required to import the RAITE dataset. You can find complete instructions [here](https://dvc.org/doc/install) on how to install DVC.
+
+If installiong with conda it is recommeneded to set your default solver as libmamba. You can find instructions [here](https://www.anaconda.com/blog/conda-is-fast-now) on installing and setting your default solver as libmamba. Alternatively, you can also following the DVC installation instructions and install mamba within your dvc envirnoment.
+
+Installing with conda (libmamba default solver):
+
+```bash
+conda install -c conda-forge dvc # for use with local storage
+conda install -c conda-forge dvc-ssh # for use with remote storage
+conda install -c conda-forge dvc-gdrive # for use with Google Drive remote storage
+```
+Installing with conda (libmamba not default solver):
+
+```bash
+conda install -c conda-forge mamba # installs much faster solver than conda
+mamba install -c conda-forge dvc # for use with local storage
+mamba install -c conda-forge dvc-ssh # for use with remote storage
+mamba install -c conda-forge dvc-gdrive # for use with Google Drive remote storage
+```
 
 You can install the requirements using pip:
 ```bash
-pip install dvc[gdrive]
+pip install dvc # for use with local storage
+pip install dvc[ssh] # for use with remote storage
+pip install dvc[gdrive] # for use with Google Drive remote storage
 ```
 
 Or, if you use PDM to manage Python packages, after cloning this repo, you can have DVC by running this command:
 
 ```bash 
 pdm update
+```
+## Directory Requirements
+
+If you plan to use DVC in conjunction with a SSH connection to the CRC a local configuration file must be set-up to establish your username. 
+
+
+Run the following command to set-up a local file. Replace '<CRC user>' with your CRC user.
+
+```bash 
+dvc remote modify --local cvrl_remote user <CRC user>
 ```
 
 ## Usage
@@ -31,11 +61,12 @@ dvc list https://github.com/nd-crane/raite-data-registry data/
 ```
 
 To view the content of a particular dataset in the registry, you can run the `dvc list` with `-R` and specify the dataset name in the data folder. 
-For example, to list the content of the initial crane dataset, you can run the following command:
+For example, to list the content of the initial crane dataset, you can run the following commands:
 
 ```bash
-dvc list -R https://github.com/nd-crane/raite-data-registry data/raite_2023
+dvc list -R https://github.com/nd-crane/raite-data-registry data/raite_2023 # from within a CRC machine
 ```
+
 
 
 ### **Data downloads**
