@@ -134,8 +134,7 @@ To explore the currently available datasets of this DVC repository, you can run 
 dvc list https://github.com/nd-crane/raite-data-registry data/
 ```
 
-To view the content of a particular dataset in the registry, you can run the `dvc list` with `-R` and specify the dataset name in the data folder. 
-For example, to list the content of the initial crane dataset, you can run the following commands:
+To view the content of a particular dataset in the registry, you can run the `dvc list` command with the `-R` flag and specify the dataset name in the data folder. 
 
 ###### Local (From within a CRC machine)
 
