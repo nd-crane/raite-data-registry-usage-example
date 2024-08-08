@@ -172,7 +172,7 @@ To obtain the raite2023 dataset with the videos from the matches, execute the fo
 If you are logged into a CRC machine at the University of Notre Dame you can use the following command.
 
 ```bash
-dvc get https://github.com/nd-crane/raite-data-registry data/raite_2023/cleaned_matches
+dvc get https://github.com/nd-crane/raite-data-registry data/raite_2023/dataset
 ```
 
 ###### Remote SSH to a CRC machine
@@ -182,7 +182,7 @@ If you are on your local machine and connected to the Notre Dame VPN you can add
 The default path from within a DVC repository is `./.dvc/config.local`. This is used in the example below.
 
 ```bash
-dvc get --remote cvrl_remote --config ./.dvc/config.local https://github.com/nd-crane/raite-data-registry data/raite_2023/cleaned_matches
+dvc get --remote cvrl_remote --config ./.dvc/config.local https://github.com/nd-crane/raite-data-registry data/raite_2023/dataset
 ```
 
 ###### Google Drive
@@ -190,7 +190,7 @@ dvc get --remote cvrl_remote --config ./.dvc/config.local https://github.com/nd-
 If you don't have access to CRC machines at the University of Notre Dame, add the flag `--remote` to specify `gdrive` as a remote location. See the example below.
 
 ```bash
-dvc get --remote gdrive https://github.com/nd-crane/raite-data-registry data/raite_2023/cleaned_matches
+dvc get --remote gdrive https://github.com/nd-crane/raite-data-registry data/raite_2023/dataset
 ```
 
 ### **Data import**
@@ -201,7 +201,7 @@ You must also be in a directory that is git repo and initialize the dvc environm
 For example, to import the raite2023 dataset (saving the dependencies), you can run the following:
 
 ```bash
-# Only in the first time
+# Only needed the first time
 
 # (optional) Initialize Git only if you are inside a folder that is not currently a Git repository
 git init 
@@ -211,17 +211,17 @@ dvc init
 ```
 Finally, run the dvc import command:
 ```bash
-dvc import https://github.com/nd-crane/raite-data-registry data/raite_2023/cleaned_matches
+dvc import https://github.com/nd-crane/raite-data-registry data/raite_2023/dataset
 ```
 Again, if you cannot access CRC machines at the University of Notre Dame, you must add the flag `--remote gdrive` to the previous command. 
 Note: In addition to downloading the data, `dvc import` saves information about the local project's dependency on the data source (the raite-data-registry repo).
 DVC generates a special import `.dvc` file containing such dependency information in that case. 
-The generated file is `cleaned_matches.dvc` in the previous example.
+The generated file is `dataset.dvc` in the previous example.
 
 Whenever the dataset changes in the registry, you can bring data up to date with the `dvc update` command followed by the name of the generated `.dvc` file.\
-For example, to update the raite 2023 cleaned_matches dataset, you can run the following:
+For example, to update the raite 2023 dataset, you can run the following:
 ```bash
-dvc update cleaned_matches.dvc
+dvc update dataset.dvc
 ```
 
 
